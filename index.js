@@ -59,10 +59,11 @@ const questions = [
 
 inquirer.prompt(questions).then(answers => {
   const names = answers.name.split(',').map(name => {
-    const array = name.trim().split('')
-    const toUpper = [array[0].toUpperCase(), array.splice(1)]
-    const newName = toUpper.flat().join('')
-    console.log(name + '  ' + array + '  ' + toUpper + '  ' + newName)
+    const arrayChar = name.trim().split('')
+    const newName = [
+      ...arrayChar[0].toUpperCase(),
+      ...arrayChar.splice(1),
+    ].join('')
     return newName
   })
   names.forEach(name =>

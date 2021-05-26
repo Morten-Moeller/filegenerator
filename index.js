@@ -7,16 +7,29 @@ const templates = {
     export default function ${name}() { 
       return <div>${name}</div>
   }`,
-  spec: name => `import ${name} from './${name}'
-      
-      describe('${name}', => {
-          it('should', () => {
+  spec: name => `import { render, screen } from '@testing-library/react'
+  import ${name} from './${name}'
   
-          }
-      })`,
-  stories: name => `import ${name} from './${name}'
-      ...
-      `,
+  describe('${name}', () => {
+    it('has af Carcasonne as text', () => {
+      const { container } = render(<${name} />)
+  
+      expect(container.firstChild).toHaveTextContent('${name}')
+    })
+  })
+  `,
+  stories: name => `import React from 'react'
+  import ${name} from './${name}'
+  
+  export default {
+    title: '${name}',
+    component: ${name},
+  }
+  
+  const Template = args => <${name} {...args} />
+  
+  export const Default${name} = Template.bind({})
+  Default${name}.args = {}`,
 }
 
 const questions = [

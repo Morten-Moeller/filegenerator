@@ -2,7 +2,7 @@ const writeFile = require('./writeFile')
 const inquirer = require('inquirer')
 
 const templates = {
-  component: name => `import styled from 'styled-component'
+  component: name => `import styled from 'styled-components/macro'
 
     export default function ${name}() { 
       return <div>${name}</div>

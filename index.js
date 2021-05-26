@@ -58,8 +58,17 @@ const questions = [
 ]
 
 inquirer.prompt(questions).then(answers => {
-  answers.fileTypes.forEach(fileType => {
-    const fileString = templates[fileType](answers.name)
-    writeFile(answers.name, fileType, fileString)
+  const names = answers.name.split(',').map(name => {
+    const array = name.trim().split('')
+    const toUpper = [array[0].toUpperCase(), array.splice(1)]
+    const newName = toUpper.flat().join('')
+    console.log(name + '  ' + array + '  ' + toUpper + '  ' + newName)
+    return newName
   })
+  names.forEach(name =>
+    answers.fileTypes.forEach(fileType => {
+      const fileString = templates[fileType](name)
+      writeFile(name, fileType, fileString)
+    })
+  )
 })

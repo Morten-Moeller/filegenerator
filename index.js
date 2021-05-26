@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 })
 
 rl.question(
-  'Which functions and files would you like to create? Please seperate by comma.',
+  'Which functions and files would you like to create? Please seperate by comma. \n',
   answer => {
     answer.split(',').forEach(name => writeFile(name.trim()))
 
